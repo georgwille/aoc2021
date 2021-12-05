@@ -16,8 +16,8 @@ for line in fin:
     elif y1 == y2:
         field[x1 : x2 + 1, y1] += 1
     else:
+        f = 1 if x1 < x2 else -1
         for c in range(y2 + 1 - y1):
-            f = 1 if x1 < x2 else -1
             field[x1 + f * c, y1 + c] += 1
 
 print(np.argwhere(field > 1).shape[0])
