@@ -5,13 +5,7 @@ fin = open("input_05.txt")
 field = np.zeros((1000, 1000), dtype="int16")
 
 for line in fin:
-    start, end = line.strip().split(" -> ")
-    x1, y1 = start.split(",")
-    x2, y2 = end.split(",")
-    x1 = int(x1)
-    y1 = int(y1)
-    x2 = int(x2)
-    y2 = int(y2)
+    x1,y1,x2,y2 = [int(n) for n in line.replace(" -> ",",").split(",")]
 
     if x2 < x1: # swap start to up&left
         x1, x2 = x2, x1
