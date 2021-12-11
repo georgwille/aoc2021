@@ -2,7 +2,7 @@ import numpy as np
 
 fin = open("input_05.txt")
 
-field = np.zeros((1000, 1000), dtype="int16")
+field = np.zeros((1000, 1000), dtype="int32")
 
 for line in fin:
     x1, y1, x2, y2 = [int(n) for n in line.replace(" -> ", ",").split(",")]
