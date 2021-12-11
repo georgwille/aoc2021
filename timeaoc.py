@@ -5,6 +5,7 @@ try:
     num = sys.argv[1]
 except:
     print("Specify file, e.g. 9a, 10b, 11c, or full file name")
+    print("Optional 2nd parameter is number of rounds")
     sys.exit()
 
 if num.endswith('.py'):
@@ -19,7 +20,10 @@ else:
 
 runtimes = []
 
-rounds = 20
+try:
+    rounds = int(sys.argv[2])
+except:
+    rounds = 20
 
 print("Discarding startup round")
 exec(scommand)
