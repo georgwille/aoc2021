@@ -17,14 +17,13 @@ def paths_to_end(history):
             history.append(target)
             paths += paths_to_end(history)
             history.pop()
-        elif PART2 and target.islower() and target != 'start':
-            if not history[0]:
-                history[0] = True # visited some cave twice
-                history.append(target)
-                paths += paths_to_end(history)
-                history.pop()
-                history[0] = False
+        elif not history[0] and target.islower() and target != 'start':
+            history[0] = True # visited some cave twice
+            history.append(target)
+            paths += paths_to_end(history)
+            history.pop()
+            history[0] = False
     return paths
 
-for PART2 in (False,True): # global variables - boooooo!
-    print(paths_to_end([False,'start']))
+print(paths_to_end([True,'start']))
+print(paths_to_end([False,'start']))
