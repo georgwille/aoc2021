@@ -11,7 +11,7 @@ except:
 if num.endswith('.py'):
     num = num[:-3]
 
-if len(num)<4 and num[0].isdigit() and num[-1] in ('a','b','c'):
+if len(num)<4 and num[0].isdigit() and num[-1] in ('abcdef'):
     command = f'reload(aoc_{num:0>3})'
     scommand = f'import aoc_{num:0>3}'
 else:
