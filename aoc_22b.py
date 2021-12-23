@@ -32,29 +32,23 @@ def intersect_cube(cube1, cube2):
     return tuple(temp)
 
 
-field = {}  # collecting all input cubes and overlap cubes with their "weight"
+from collections import defaultdict
+
+# collecting all input cubes and overlap cubes with their "weight"
+field = defaultdict(int)
 
 for state, curr_inputcube in seq:
-    all_contrib = {}  # collects the weights that need to be annulled
+    all_contrib = defaultdict(int)  # collects the weights that need to be annulled
     for cube in field:
         int_cube = intersect_cube(curr_inputcube, cube)
         if int_cube:
-            if int_cube in all_contrib:
-                all_contrib[int_cube] += field[cube]
-            else:
-                all_contrib[int_cube] = field[cube]
+            all_contrib[int_cube] += field[cube]
 
-    for cube in all_contrib: # apply cumulative changes to field
-        if cube in field:
-            field[cube] -= all_contrib[cube]
-        else:
-            field[cube] = -all_contrib[cube]
+    for cube in all_contrib:  # apply cumulative changes to field
+        field[cube] -= all_contrib[cube]
 
-    if state == 1: # finally, insert the current input cube if "on"
-        if curr_inputcube in field:
-            field[curr_inputcube] += 1
-        else:
-            field[curr_inputcube] = 1
+    if state == 1:  # finally, insert the current input cube if "on"
+        field[curr_inputcube] += 1
 
 
 def vol(cube):
